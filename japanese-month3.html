@@ -7,7 +7,9 @@
 <title>일본어 생활회화</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Gothic+A1:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   /* 브루너 6색 — 한 단계 낮추고 살짝 어둡게 */
@@ -24,9 +26,9 @@
   --base:#EDEDF0;         /* 애플 시스템 그레이 계열 */
   --line:rgba(38,40,43,.09);
 
-  --jp:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
-  --ko:-apple-system,BlinkMacSystemFont,"SF Pro Text","Pretendard","Gothic A1",sans-serif;
-  --round:ui-rounded,"SF Pro Rounded","Zen Maru Gothic",system-ui,sans-serif;
+  --jp:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  --ko:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",sans-serif;
+  --round:"Zen Maru Gothic","Pretendard Variable",Pretendard,ui-rounded,system-ui,sans-serif;
 
   --spring:cubic-bezier(.34,1.56,.64,1);
   --ease:cubic-bezier(.32,.72,0,1);
@@ -87,7 +89,7 @@ header.top{
   padding:12px var(--pad) 12px;padding-top:calc(12px + env(safe-area-inset-top));
   display:flex;align-items:center;gap:10px;
 }
-header.top h1{margin:0;font-size:15.5px;font-weight:700;flex:1;letter-spacing:-.02em}
+header.top h1{margin:0;font-size:16px;font-weight:600;flex:1;letter-spacing:-.025em}
 header.top .sub{font-family:var(--round);font-size:11.5px;color:var(--ink-3);font-weight:500}
 .iconbtn{
   width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:50%;
@@ -98,7 +100,7 @@ header.top .sub{font-family:var(--round);font-size:11.5px;color:var(--ink-3);fon
 
 /* ── 홈 ── */
 .hero{padding:26px var(--pad) 18px}
-.hero .goal{font-size:21px;line-height:1.46;font-weight:700;letter-spacing:-.028em;margin:11px 0 0}
+.hero .goal{font-size:21px;line-height:1.48;font-weight:600;letter-spacing:-.03em;margin:11px 0 0}
 .hero .meta{margin-top:15px;display:flex;gap:8px;flex-wrap:wrap}
 .hero .meta span{
   font-family:var(--round);font-size:11.5px;font-weight:600;color:var(--ink-2);
@@ -130,7 +132,7 @@ header.top .sub{font-family:var(--round);font-size:11.5px;color:var(--ink-3);fon
 
 .daycard{border-radius:var(--r);overflow:hidden}
 .daycard .body{padding:20px 20px 18px}
-.daycard h2{margin:11px 0 6px;font-size:20px;letter-spacing:-.03em;line-height:1.34;font-weight:700}
+.daycard h2{margin:11px 0 6px;font-size:20.5px;letter-spacing:-.035em;line-height:1.34;font-weight:600}
 .daycard p{margin:0;color:var(--ink-2);font-size:13.5px}
 .daycard .go{
   width:100%;background:var(--blue);color:#fff;padding:17px 20px;font-weight:700;font-size:15px;
@@ -150,14 +152,15 @@ header.top .sub{font-family:var(--round);font-size:11.5px;color:var(--ink-3);fon
 .progressbar i{display:block;height:100%;background:var(--blue);border-radius:0 3px 3px 0;transition:width .5s var(--ease)}
 #view.stage{display:block;padding:20px var(--pad) 156px}
 
-.jp{font-family:var(--jp);letter-spacing:.005em}
-.jp-lg{font-size:29px;line-height:1.6;font-weight:700}
-.jp-md{font-size:21px;line-height:1.58;font-weight:500}
-.jp-sm{font-size:17px;line-height:1.58}
-ruby rt{font-family:var(--jp);font-size:.45em;color:var(--blue);font-weight:500;letter-spacing:0}
-.reading{font-family:var(--jp);font-size:14px;color:var(--blue);margin-top:5px}
-.ko{font-size:15px;margin-top:9px;color:var(--ink)}
-.en{font-size:14px;color:var(--ink-3);margin-top:5px}
+.jp{font-family:var(--jp);letter-spacing:.015em;font-feature-settings:'palt' 1}
+.jp-lg{font-size:30px;line-height:1.58;font-weight:700;letter-spacing:.01em}
+.jp-md{font-size:21.5px;line-height:1.56;font-weight:500}
+.jp-sm{font-size:17.5px;line-height:1.6}
+ruby rt{font-family:var(--jp);font-size:.44em;color:var(--blue);font-weight:500;letter-spacing:.01em;
+  transform:translateY(1px)}
+.reading{font-family:var(--jp);font-size:14.5px;color:var(--blue);margin-top:6px;letter-spacing:.015em}
+.ko{font-size:15.5px;margin-top:10px;color:var(--ink);letter-spacing:-.012em}
+.en{font-size:14px;color:var(--ink-3);margin-top:6px;letter-spacing:-.005em}
 .hide-ko .ko,.hide-ko .konly{display:none}
 .hide-en .en{display:none}
 .hide-fu .reading{display:none}
@@ -214,7 +217,7 @@ ruby rt{font-family:var(--jp);font-size:.45em;color:var(--blue);font-weight:500;
   font-family:var(--round);font-size:11px;font-weight:700;color:var(--ink-3);width:22px;flex:none;padding-top:4px;
 }
 .drill .dbody{flex:1}
-.drill .dcue{font-size:16px;font-weight:600;line-height:1.5;letter-spacing:-.015em}
+.drill .dcue{font-size:16.5px;font-weight:600;line-height:1.5;letter-spacing:-.018em}
 .drill .dctx{font-size:12.5px;color:var(--ink-3);margin-top:3px}
 .drill .dans{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);animation:pop-in .45s var(--spring) both}
 .drill.playing{background:rgba(223,169,47,.16);margin:0 -11px;padding-left:11px;padding-right:11px}
@@ -241,10 +244,10 @@ ruby rt{font-family:var(--jp);font-size:.45em;color:var(--blue);font-weight:500;
   font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--yellow);margin-bottom:22px;
   padding:6px 14px;border-radius:99px;background:rgba(223,169,47,.16);
 }
-#speakwin .what{font-size:19px;line-height:1.5;text-align:center;max-width:330px;font-weight:600;letter-spacing:-.02em}
+#speakwin .what{font-size:19.5px;line-height:1.52;text-align:center;max-width:340px;font-weight:600;letter-spacing:-.02em}
 #speakwin .sec{
-  font-family:var(--round);font-size:82px;font-weight:600;line-height:1;margin-top:30px;
-  font-variant-numeric:tabular-nums;letter-spacing:-.04em;color:var(--yellow);
+  font-family:var(--round);font-size:84px;font-weight:700;line-height:1;margin-top:30px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--yellow);
 }
 #speakwin .sec.tick{animation:boing .34s var(--spring)}
 #speakwin .track{position:absolute;left:20px;right:20px;bottom:96px;height:8px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden}
@@ -271,7 +274,7 @@ ruby rt{font-family:var(--jp);font-size:.45em;color:var(--blue);font-weight:500;
 .toggles button.on{background:var(--brown);color:#fff;border-color:transparent}
 .dock .row{display:flex;gap:9px}
 .btn{
-  border-radius:17px;padding:15px 0;font-weight:700;font-size:15px;text-align:center;
+  border-radius:17px;padding:15px 0;font-weight:600;font-size:15.5px;text-align:center;
   transition:transform .38s var(--spring),filter .2s;letter-spacing:-.015em;
 }
 .btn:active:not([disabled]){transform:scale(.955)}
