@@ -1,445 +1,386 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>히로시마 D-14 실전 특훈 v3</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#EDEDF0">
+<title>일본어 생활회화 · 5개월</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Gothic+A1:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
---bg:#F3F5F4;--card:#FFFFFF;--ink:#1C2B33;--muted:#6C7A80;
---sea:#16324A;--seaDeep:#0D2233;--torii:#D8432B;--toriiSoft:#FBE9E4;
---moss:#3E7C59;--mossSoft:#E7F1EA;--soft:#E4EAEC;--line:#DDE4E4;
---shadow:0 1px 3px rgba(22,50,74,.06),0 10px 26px rgba(22,50,74,.09);
---jp:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif;
---kr:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif}
+  --red:#C24A3C;    --red-d:#A63B2F;
+  --yellow:#DFA92F; --yellow-d:#C08F1F;
+  --blue:#3A6494;   --blue-d:#2B4C74;
+  --green:#4A7F62;  --green-d:#38634B;
+  --brown:#7C5B47;  --brown-d:#5E4234;
+  --grey:#8A9095;   --grey-d:#5A6167;
+
+  --ink:#26282B; --ink-2:#5C6167; --ink-3:#8D9298;
+  --base:#EDEDF0;
+  --line:rgba(38,40,43,.09);
+
+  --jp:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
+  --ko:-apple-system,BlinkMacSystemFont,"SF Pro Text","Pretendard","Gothic A1",sans-serif;
+  --round:ui-rounded,"SF Pro Rounded","Zen Maru Gothic",system-ui,sans-serif;
+
+  --spring:cubic-bezier(.34,1.56,.64,1);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --pad:20px;
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--kr);line-height:1.65;padding-bottom:96px}
-header{position:sticky;top:0;z-index:50;background:rgba(243,245,244,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.wrap{max-width:760px;margin:0 auto;padding:13px 14px}
-.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
-.brand{font-weight:900;color:var(--sea);font-size:18px;letter-spacing:-.3px}
-.sub{font-size:11.5px;color:var(--muted)}
-.badge{font-size:12px;font-weight:900;color:var(--torii);white-space:nowrap;text-align:right}
-.badge small{display:block;color:var(--muted);font-weight:700;font-size:10.5px}
-.bar{height:7px;background:var(--soft);border-radius:999px;overflow:hidden;margin-top:10px}
-.bar>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sea),var(--torii));transition:.3s}
-.tabs{display:flex;gap:7px;margin-top:11px}
-.tabs button{flex:1;padding:10px 4px;border:0;border-radius:12px;background:var(--soft);color:var(--sea);font-family:var(--kr);font-weight:900;font-size:13.5px;cursor:pointer}
-.tabs button.on{background:var(--torii);color:#fff}
-.nav{display:flex;gap:7px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
-.nav::-webkit-scrollbar{display:none}
-.chip{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:12px;padding:6px 10px;color:var(--muted);font-weight:900;cursor:pointer;min-width:58px;text-align:center;line-height:1.25}
-.chip small{display:block;font-size:10px;font-weight:700}
-.chip.done{border-color:var(--moss);color:var(--moss);background:var(--mossSoft)}
-.chip.active{background:var(--sea);border-color:var(--sea);color:#fff}
-.chip.active small{color:rgba(255,255,255,.75)}
-main{max-width:760px;margin:0 auto;padding:16px 14px 28px}
-.hero{background:linear-gradient(140deg,var(--sea),var(--seaDeep));color:#fff;border-radius:22px;padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
-.hero .dday{display:inline-block;background:var(--torii);padding:4px 11px;border-radius:999px;font-size:12px;font-weight:900;margin-bottom:8px}
-.hero h1{margin:0;font-size:23px;line-height:1.3}
-.hero p{margin:7px 0 0;color:rgba(255,255,255,.78);font-size:13px;word-break:keep-all}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow);overflow:visible;height:auto}
-.sec{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-weight:900;color:var(--sea)}
-.sec .num{width:25px;height:25px;border-radius:9px;display:grid;place-items:center;background:var(--soft);color:var(--torii);font-size:12px;flex:0 0 auto}
-.sec .act{margin-left:auto;border:1px solid var(--line);background:#fff;color:var(--sea);border-radius:999px;padding:5px 11px;font-family:var(--kr);font-weight:900;font-size:12px;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
-.phrase{background:var(--bg);border:1px solid var(--line);border-radius:15px;padding:12px;overflow:visible;height:auto;position:relative}
-.jp{font-family:var(--jp);font-size:22px;line-height:1.5;word-break:keep-all;overflow-wrap:anywhere}
-rt{font-size:10px;color:var(--torii);font-family:var(--kr);font-weight:800;letter-spacing:0}
-.ko{font-size:13px;color:var(--muted);margin-top:4px;word-break:keep-all;overflow-wrap:anywhere}
-.sound{font-size:12.5px;color:var(--sea);font-weight:900;margin-top:3px;word-break:keep-all;overflow-wrap:anywhere;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.stars{font-size:11px;color:var(--torii);font-weight:900;margin-bottom:3px;letter-spacing:1px}
-.spk{border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;color:var(--sea);font-family:var(--kr);font-weight:900;flex:0 0 auto}
-.spk:active{background:var(--soft)}
-.wordlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
-.word{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px}
-.word .jp{font-size:20px}
-.pattern{background:linear-gradient(135deg,var(--mossSoft),#fff)}
-.dialogue{display:flex;flex-direction:column;gap:8px}
-.line{display:flex;gap:9px;align-items:flex-start}
-.who{flex:0 0 auto;min-width:44px;text-align:center;border-radius:999px;background:var(--sea);color:#fff;font-size:12px;font-weight:900;padding:4px 8px;margin-top:4px}
-.line.other .who{background:var(--torii)}
-.bubble{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:15px;padding:10px 12px;min-width:0;overflow:visible;height:auto}
-.bubble .jp{font-size:19px}
-.tip{display:flex;gap:10px;align-items:flex-start;background:var(--toriiSoft);border:1px solid #F0D2C8;border-radius:16px;padding:14px 15px;color:#7A3322;font-size:13.5px;line-height:1.75;word-break:keep-all;overflow-wrap:anywhere;overflow:visible;height:auto}
-.tip .i{flex:0 0 auto}
-/* ---- 5초 테스트 ---- */
-.quiz{display:flex;flex-direction:column;gap:10px}
-.q{border:1px solid var(--line);background:var(--bg);border-radius:16px;padding:13px;overflow:visible}
-.qko{font-weight:900;font-size:15.5px;word-break:keep-all}
-.qbar{height:6px;background:var(--soft);border-radius:999px;overflow:hidden;margin:10px 0 0}
-.qbar>span{display:block;height:100%;width:0;background:var(--torii)}
-.q.run .qbar>span{width:100%;transition:width 5s linear}
-.qbtns{display:flex;gap:8px;margin-top:10px}
-.qbtns button{flex:1;padding:10px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--sea);font-family:var(--kr);font-weight:900;font-size:13px;cursor:pointer}
-.qbtns .go{background:var(--sea);color:#fff;border-color:var(--sea)}
-.qans{display:none;border-top:1px dashed var(--line);margin-top:11px;padding-top:11px}
-.q.show .qans{display:block}
-.q.show .qbtns,.q.show .qbar{display:none}
-.ox{display:flex;gap:8px;margin-top:10px}
-.ox button{flex:1;padding:9px;border-radius:12px;border:1px solid var(--line);background:#fff;font-family:var(--kr);font-weight:900;font-size:13px;cursor:pointer;color:var(--ink)}
-.ox button.o.sel{background:var(--mossSoft);border-color:var(--moss);color:var(--moss)}
-.ox button.x.sel{background:var(--toriiSoft);border-color:var(--torii);color:var(--torii)}
-/* ---- 스피킹 탭 ---- */
-.speakCard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 16px;box-shadow:var(--shadow);text-align:center}
-.speakCard .tag{display:inline-block;background:var(--soft);color:var(--sea);border-radius:999px;font-size:11.5px;font-weight:900;padding:4px 11px;margin-bottom:12px}
-.speakCard .qko{font-size:19px;margin-bottom:4px}
-.speakCard .qans{text-align:center;border-top:0;margin-top:14px;padding-top:0}
-.speakCard .jp{font-size:24px}
-.scount{font-size:12px;color:var(--muted);font-weight:900;margin-bottom:8px}
-.sdone{text-align:center;padding:26px 10px}
-.sdone .big{font-size:34px;font-weight:900;color:var(--sea)}
-.sdone p{color:var(--muted);font-size:13.5px}
-.restart{margin-top:12px;padding:12px 22px;border-radius:14px;border:0;background:var(--torii);color:#fff;font-family:var(--kr);font-weight:900;font-size:14px;cursor:pointer}
-/* ---- 하단 ---- */
-.footer{position:fixed;left:0;right:0;bottom:0;background:rgba(243,245,244,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:50}
-.footer .wrap{display:flex;gap:9px;padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
-.footer button{flex:1;padding:13px 6px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--sea);font-family:var(--kr);font-weight:900;font-size:13.5px;cursor:pointer}
-.footer .doneBtn{flex:1.3;background:var(--sea);color:#fff;border-color:var(--sea)}
-.footer .doneBtn.ok{background:var(--moss);border-color:var(--moss)}
-.secWrap{display:none}
-body.mode-lesson #view-lesson{display:block}
-body.mode-top #view-top{display:block}
-body.mode-speak #view-speak{display:block}
-body:not(.mode-lesson) .footer,body:not(.mode-lesson) .nav,body:not(.mode-lesson) .bar{display:none}
-.note{font-size:11.5px;color:var(--muted);margin-top:8px;word-break:keep-all}
-@media(max-width:520px){.brand{font-size:16px}.hero h1{font-size:20px}.jp{font-size:20px}.grid{grid-template-columns:1fr}.top{align-items:flex-start}}
-@media(prefers-reduced-motion:reduce){.q.run .qbar>span{transition:none;width:100%}}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--base);color:var(--ink);
+  font-family:var(--ko);font-size:15px;line-height:1.6;letter-spacing:-.005em;
+  -webkit-font-smoothing:antialiased;overscroll-behavior-y:none;
+}
+button,a{font:inherit;color:inherit;border:0;background:none;cursor:pointer;text-decoration:none}
+
+/* ── 배경 블롭 (스크롤 패럴랙스) ── */
+#bg{position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(76px);opacity:.52}
+#bg i{position:absolute;display:block;border-radius:50%;will-change:transform}
+#bg .b1{width:56%;aspect-ratio:1;left:-10%;top:0%;background:var(--blue)}
+#bg .b2{width:46%;aspect-ratio:1;right:-8%;top:16%;background:var(--yellow)}
+#bg .b3{width:52%;aspect-ratio:1;left:8%;top:44%;background:var(--green)}
+#bg .b4{width:40%;aspect-ratio:1;right:-4%;top:64%;background:var(--red)}
+#bg .b5{width:44%;aspect-ratio:1;left:-6%;top:84%;background:var(--brown)}
+
+/* ── 상단 스크롤 진행선 ── */
+#scrollbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+  background:linear-gradient(90deg,var(--blue),var(--green),var(--yellow),var(--red));
+  border-radius:0 3px 3px 0;transition:width .1s linear}
+
+.wrap{max-width:520px;margin:0 auto;position:relative;z-index:1;padding-bottom:60px}
+
+/* ── 글래스 ── */
+.glass{
+  background:linear-gradient(155deg,rgba(255,255,255,.74),rgba(255,255,255,.44));
+  -webkit-backdrop-filter:blur(22px) saturate(190%);backdrop-filter:blur(22px) saturate(190%);
+  border:.5px solid rgba(255,255,255,.74);
+  box-shadow:
+    inset 0 .8px 0 rgba(255,255,255,.95),
+    inset 0 -.8px 0 rgba(255,255,255,.34),
+    0 12px 30px -16px rgba(28,32,38,.36),
+    0 2px 6px -4px rgba(28,32,38,.2);
+}
+@supports not (backdrop-filter:blur(2px)){.glass{background:rgba(255,255,255,.92)}}
+
+/* ── 히어로 ── */
+.hero{padding:56px var(--pad) 30px;text-align:center}
+.orbits{position:relative;height:96px;margin-bottom:24px}
+.orbits i{
+  position:absolute;left:50%;top:50%;border-radius:50%;display:block;
+  transform-origin:center;animation:float 3.4s var(--spring) infinite;
+}
+.orbits .o1{width:26px;height:26px;background:var(--red);   margin:-52px 0 0 -62px;animation-delay:0s}
+.orbits .o2{width:19px;height:19px;background:var(--yellow); margin:-8px 0 0 -84px;animation-delay:.18s}
+.orbits .o3{width:52px;height:52px;background:var(--blue);   margin:-26px 0 0 -26px;animation-delay:.36s}
+.orbits .o4{width:22px;height:22px;background:var(--green);  margin:-46px 0 0 40px;animation-delay:.54s}
+.orbits .o5{width:15px;height:15px;background:var(--brown);  margin:6px 0 0 64px;animation-delay:.72s}
+.orbits .o3::after{content:"日";position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--jp);font-size:23px;font-weight:700;color:#fff}
+.hero h1{margin:0;font-size:32px;font-weight:700;letter-spacing:-.04em;line-height:1.24}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero p{margin:12px auto 0;font-size:14.5px;color:var(--ink-2);max-width:300px;line-height:1.6}
+
+/* ── 요약 바 ── */
+.summary{margin:26px var(--pad) 0;border-radius:24px;padding:20px 22px;display:flex;align-items:center;gap:16px}
+.ring{width:66px;height:66px;flex:none;border-radius:50%;display:grid;place-items:center;position:relative;
+  background:conic-gradient(var(--blue) var(--p,0%),rgba(38,40,43,.1) 0);transition:background 1s var(--ease)}
+.ring::before{content:"";position:absolute;inset:6px;border-radius:50%;background:rgba(255,255,255,.86)}
+.ring b{position:relative;font-family:var(--round);font-size:19px;font-weight:700;line-height:1}
+.ring b i{font-style:normal;font-size:11px;font-weight:600;color:var(--ink-3)}
+.summary .txt{flex:1;min-width:0}
+.summary .t1{font-size:15.5px;font-weight:700;letter-spacing:-.02em}
+.summary .t2{font-size:12.5px;color:var(--ink-2);margin-top:3px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.chips span{font-family:var(--round);font-size:11px;font-weight:600;color:var(--ink-2);
+  background:rgba(255,255,255,.66);padding:4px 10px;border-radius:99px;border:.5px solid rgba(255,255,255,.7)}
+
+/* ── 섹션 라벨 ── */
+.lab{display:flex;align-items:center;gap:10px;margin:34px var(--pad) 14px;
+  font-size:11.5px;font-weight:700;color:var(--ink-3);letter-spacing:.05em}
+.lab::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ── 월 카드 ── */
+.month{
+  display:block;width:100%;text-align:left;margin:0 var(--pad) 14px;border-radius:26px;overflow:hidden;
+  position:relative;transition:transform .45s var(--spring),box-shadow .3s;
+}
+.month:active{transform:scale(.975)}
+.month.locked{opacity:.78}
+.month .head{padding:20px 22px 0;display:flex;align-items:flex-start;gap:14px}
+.mnum{
+  width:50px;height:50px;flex:none;border-radius:17px;display:grid;place-items:center;
+  font-family:var(--round);font-size:20px;font-weight:700;color:#fff;position:relative;
+  transition:transform .5s var(--spring);
+}
+.month:active .mnum{transform:rotate(-7deg) scale(1.06)}
+.mnum small{position:absolute;bottom:5px;font-size:8px;font-weight:600;opacity:.75;letter-spacing:.04em}
+.mhead{flex:1;min-width:0;padding-top:2px}
+.mtitle{font-size:18.5px;font-weight:700;letter-spacing:-.03em;line-height:1.3}
+.mgoal{font-size:12.5px;color:var(--ink-2);margin-top:5px;line-height:1.5}
+.mstate{
+  font-family:var(--round);font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:99px;flex:none;
+  background:rgba(38,40,43,.07);color:var(--ink-3);margin-top:3px;
+}
+.mstate.live{color:#fff}
+
+.weeks{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;padding:16px 22px 0}
+.wk{display:flex;gap:8px;align-items:baseline;font-size:12.5px;color:var(--ink-2);line-height:1.4}
+.wk b{font-family:var(--round);font-size:10px;font-weight:700;color:var(--ink-3);flex:none}
+
+.track{padding:16px 22px 0}
+.dots28{display:flex;gap:3px}
+.dots28 i{flex:1;height:6px;border-radius:99px;background:rgba(38,40,43,.11);
+  transform:scaleY(.55);transform-origin:center;transition:transform .5s var(--spring),background .4s}
+.dots28 i.on{transform:scaleY(1)}
+.mfoot{
+  margin-top:16px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;
+  font-size:14px;font-weight:700;color:#fff;
+}
+.mfoot .arw{font-size:19px;font-weight:400;opacity:.75;transition:transform .4s var(--spring)}
+.month:active .mfoot .arw{transform:translateX(4px)}
+.mfoot.soon{background:rgba(38,40,43,.05);color:var(--ink-3);font-weight:600;font-size:13px}
+
+/* ── 사용법 ── */
+.tips{margin:0 var(--pad);border-radius:24px;padding:20px 22px}
+.tip{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--line)}
+.tip:last-child{border-bottom:0}
+.tip .ic{width:30px;height:30px;flex:none;border-radius:11px;display:grid;place-items:center;font-size:14px;color:#fff}
+.tip .tt{font-size:14px;font-weight:600;letter-spacing:-.015em}
+.tip .td{font-size:12.5px;color:var(--ink-2);margin-top:2px;line-height:1.5}
+
+.foot{text-align:center;padding:38px 20px 10px;font-size:11.5px;color:var(--ink-3);line-height:1.7}
+
+/* ── 등장 애니메이션 ── */
+.rise{opacity:0;transform:translateY(26px) scale(.97)}
+.rise.in{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .72s var(--spring)}
+
+@keyframes float{0%,100%{transform:translateY(0)}42%{transform:translateY(-13px)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(58,100,148,.32)}70%{box-shadow:0 0 0 13px rgba(58,100,148,0)}}
+.pulse{animation:pulse 2.1s infinite}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rise{opacity:1;transform:none}
+}
 </style>
 </head>
-<body class="mode-lesson">
-<header><div class="wrap">
-<div class="top">
-<div><div class="sub">히로시마 여행 일본어 · 출국 전 14일 압축</div><div class="brand">広島 D-14 실전 특훈 <span style="color:var(--torii)">v3</span></div></div>
-<div class="badge" id="headDay">D-14<small id="realD"></small></div>
+<body>
+<div id="bg"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="b5"></i></div>
+<div id="scrollbar"></div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="orbits">
+      <i class="o1"></i><i class="o2"></i><i class="o3"></i><i class="o4"></i><i class="o5"></i>
+    </div>
+    <h1>매일 15분,<br><em>일본어로 말하기</em></h1>
+    <p>듣고 4초 안에 대답하는 연습을 5개월 동안.<br>같은 상황에서 쓰는 영어 표현도 함께.</p>
+  </section>
+
+  <section class="summary glass rise" id="summary">
+    <div class="ring" id="ring"><b id="ringN">0<i>/140</i></b></div>
+    <div class="txt">
+      <div class="t1" id="sumT">이제 시작해요</div>
+      <div class="t2" id="sumD">1개월차 Day 1부터 차근차근</div>
+      <div class="chips">
+        <span>표현 400</span><span>하루 11–20분</span><span>140일</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="lab rise">월별 과정</div>
+  <div id="months"></div>
+
+  <div class="lab rise">학습 방법</div>
+  <section class="tips glass rise">
+    <div class="tip">
+      <div class="ic" style="background:var(--blue)">耳</div>
+      <div><div class="tt">일본어를 먼저 듣습니다</div>
+      <div class="td">뜻과 읽는 법은 접어둔 채로 시작해요. 필요할 때 펼치면 됩니다.</div></div>
+    </div>
+    <div class="tip">
+      <div class="ic" style="background:var(--red)">口</div>
+      <div><div class="tt">4초 안에 소리 내어 말합니다</div>
+      <div class="td">말할 차례가 되면 화면이 바뀌고 남은 시간이 표시돼요. 조용한 곳에서 하세요.</div></div>
+    </div>
+    <div class="tip">
+      <div class="ic" style="background:var(--yellow)">習</div>
+      <div><div class="tt">배운 표현이 계속 돌아옵니다</div>
+      <div class="td">1일 · 3일 · 7일 · 14일 · 30일 간격으로 다시 나와요. 잊을 때쯤 만나게 됩니다.</div></div>
+    </div>
+    <div class="tip">
+      <div class="ic" style="background:var(--green)">記</div>
+      <div><div class="tt">진도는 이 브라우저에 저장됩니다</div>
+      <div class="td">계정이 없어도 이어서 학습할 수 있어요. 방문 기록을 지우면 초기화됩니다.</div></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    일본어 중심 · 영어 병기 생활회화<br>5개월 · 140일 · 표현 400개
+  </div>
 </div>
-<div class="tabs">
-<button id="tab-lesson" class="on">14일 특훈</button>
-<button id="tab-top">TOP 문장</button>
-<button id="tab-speak">스피킹 랜덤</button>
-</div>
-<div class="bar"><span id="prog"></span></div>
-<div class="nav" id="nav"></div>
-</div></header>
-<main>
-<section class="secWrap" id="view-lesson"></section>
-<section class="secWrap" id="view-top"></section>
-<section class="secWrap" id="view-speak"></section>
-</main>
-<div class="footer"><div class="wrap">
-<button id="prev">← 이전</button>
-<button id="doneBtn" class="doneBtn">오늘 완료</button>
-<button id="next">다음 →</button>
-</div></div>
+
 <script>
-const DATA={"days":[
-{"d":14,"title":"공항·입국·시내 이동","route":"히로시마 공항 → 리무진 버스(약 50분) → 히로시마역 → 숙소","goal":"공항에서 시내까지, 질문 8개를 입으로 처리하기","core":[
-["すみません。","실례합니다 / 저기요","스미마셍",5],
-["広島駅まで行きたいです。","히로시마역까지 가고 싶습니다.","히로시마에키마데 이키타이데스",5],
-["バス乗り場はどこですか。","버스 타는 곳은 어디인가요?","바스 노리바와 도코데스카",5],
-["チケットはどこで買えますか。","표는 어디서 살 수 있나요?","치켓토와 도코데 카에마스카",4],
-["このバスは広島駅に行きますか。","이 버스는 히로시마역에 가나요?","코노 바스와 히로시마에키니 이키마스카",4],
-["大人一枚お願いします。","어른 한 장 부탁드립니다.","오토나 이치마이 오네가이시마스",4],
-["どのくらいかかりますか。","시간이 어느 정도 걸리나요?","도노쿠라이 카카리마스카",4],
-["リムジンバスはどこですか。","리무진 버스는 어디인가요?","리무진바스와 도코데스카",3]],
-"words":[["空港","くうこう","공항"],["広島駅","ひろしまえき","히로시마역"],["乗り場","のりば","타는 곳"],["切符","きっぷ","승차권"],["案内所","あんないじょ","안내소"]],
-"pattern":["〜まで行きたいです。","~까지 가고 싶습니다.","ホテルまで行きたいです。 / 原爆ドームまで行きたいです。"],
-"dialogue":[["나","すみません、広島駅まで行きたいです。","저기요, 히로시마역까지 가고 싶습니다.","스미마셍, 히로시마에키마데 이키타이데스"],["상대","バス乗り場はあちらです。","버스 타는 곳은 저쪽입니다.","바스 노리바와 아치라데스"],["나","このバスは広島駅に行きますか。","이 버스는 히로시마역에 가나요?","코노 바스와 히로시마에키니 이키마스카"],["상대","はい、行きます。","네, 갑니다.","하이, 이키마스"],["나","ありがとうございます。","감사합니다.","아리가토-고자이마스"]],
-"tip":"히로시마 공항은 시내까지 철도가 없어 리무진 버스가 사실상 유일한 이동 수단이다(히로시마역까지 약 50분). 항공편 도착 시각 기준 버스 시간표를 출발 전에 꼭 확인하자."},
-{"d":13,"title":"호텔 체크인·숙소 요청","route":"숙소 도착 → 체크인 → 방 확인","goal":"예약자 이름, 여권, 와이파이, 짐 보관까지 처리하기","core":[
-["チェックインをお願いします。","체크인 부탁드립니다.","쳇쿠인오 오네가이시마스",5],
-["予約しています。キムです。","예약했습니다. 김입니다.","요야쿠시테이마스. 키무데스",5],
-["パスポートです。","여권입니다.","파스포-토데스",4],
-["Wi-Fiは使えますか。","와이파이 사용할 수 있나요?","와이화이와 츠카에마스카",4],
-["荷物を預けてもいいですか。","짐을 맡겨도 될까요?","니모츠오 아즈케테모 이이데스카",5],
-["チェックアウトは何時ですか。","체크아웃은 몇 시인가요?","쳇쿠아우토와 난지데스카",4],
-["朝食は何時からですか。","조식은 몇 시부터인가요?","쵸-쇼쿠와 난지카라데스카",3],
-["タオルをもう一枚お願いします。","수건 한 장 더 부탁드립니다.","타오루오 모- 이치마이 오네가이시마스",3]],
-"words":[["予約","よやく","예약"],["名前","なまえ","이름"],["部屋","へや","방"],["荷物","にもつ","짐"],["鍵","かぎ","열쇠"]],
-"pattern":["〜てもいいですか。","~해도 될까요?","荷物を預けてもいいですか。 / ここに座ってもいいですか。"],
-"dialogue":[["나","チェックインをお願いします。予約しています。","체크인 부탁드립니다. 예약했습니다.","쳇쿠인오 오네가이시마스. 요야쿠시테이마스"],["직원","お名前をお願いします。","성함 부탁드립니다.","오나마에오 오네가이시마스"],["나","キムです。パスポートです。","김입니다. 여권입니다.","키무데스. 파스포-토데스"],["직원","ありがとうございます。","감사합니다.","아리가토-고자이마스"],["나","Wi-Fiは使えますか。","와이파이 사용할 수 있나요?","와이화이와 츠카에마스카"]],
-"tip":"일본 호텔에서는 성만 말해도 충분하다 — \"キムです\" 하고 여권을 건네면 절차가 빠르다. 짐 보관은 체크인 전·후 모두 荷物を預けてもいいですか 하나로 해결된다."},
-{"d":12,"title":"편의점·물·도시락","route":"숙소 근처 편의점에서 첫 구매","goal":"봉투, 데우기, 젓가락, 결제를 자연스럽게 처리하기","core":[
-["これをください。","이것 주세요.","코레오 쿠다사이",5],
-["袋はいりません。","봉투는 필요 없습니다.","후쿠로와 이리마셍",5],
-["温めてください。","데워 주세요.","아타타메테 쿠다사이",4],
-["お箸をお願いします。","젓가락 부탁드립니다.","오하시오 오네가이시마스",4],
-["レシートは大丈夫です。","영수증은 괜찮습니다.","레시-토와 다이죠-부데스",4],
-["カードでお願いします。","카드로 부탁드립니다.","카-도데 오네가이시마스",4],
-["そのままで大丈夫です。","그대로 괜찮습니다(안 데워도 돼요).","소노마마데 다이죠-부데스",3],
-["ATMはありますか。","ATM이 있나요?","에-티-에무와 아리마스카",3]],
-"words":[["水","みず","물"],["袋","ふくろ","봉투"],["弁当","べんとう","도시락"],["箸","はし","젓가락"],["温め","あたため","데우기"]],
-"pattern":["〜はいりません。","~은 필요 없습니다.","袋はいりません。 / レシートはいりません。"],
-"dialogue":[["직원","袋はご利用ですか。","봉투 필요하세요?","후쿠로와 고리요-데스카"],["나","袋はいりません。","봉투는 필요 없습니다.","후쿠로와 이리마셍"],["직원","温めますか。","데워 드릴까요?","아타타메마스카"],["나","はい、お願いします。","네, 부탁드립니다.","하이, 오네가이시마스"],["나","お箸もお願いします。","젓가락도 부탁드립니다.","오하시모 오네가이시마스"]],
-"tip":"직원 말이 빨라도 袋(봉투)·温め(데우기)·箸(젓가락)·レシート(영수증) 네 단어만 잡으면 대응된다. 결제는 단말기에 직접 터치하는 셀프 방식이 많다."},
-{"d":11,"title":"식당 입장·주문 기본","route":"혼밥·점심 식당 들어가기","goal":"인원, 자리, 추천, 주문을 최소 문장으로 끝내기","core":[
-["一人です。","혼자입니다.","히토리데스",5],
-["ここ、いいですか。","여기 괜찮나요?","코코, 이이데스카",4],
-["おすすめは何ですか。","추천은 무엇인가요?","오스스메와 난데스카",5],
-["これをお願いします。","이걸로 부탁드립니다.","코레오 오네가이시마스",5],
-["お水をお願いします。","물 부탁드립니다.","오미즈오 오네가이시마스",4],
-["英語のメニューはありますか。","영어 메뉴가 있나요?","에-고노 메뉴-와 아리마스카",4],
-["同じものをください。","같은 걸로 주세요.","오나지 모노오 쿠다사이",3],
-["お手洗いはどこですか。","화장실은 어디인가요?","오테아라이와 도코데스카",5]],
-"words":[["一人","ひとり","한 명"],["席","せき","자리"],["注文","ちゅうもん","주문"],["水","みず","물"],["おすすめ","おすすめ","추천"]],
-"pattern":["これをお願いします。","이걸로 부탁드립니다.","메뉴를 손가락으로 가리키며 말하면 거의 모든 식당에서 통한다."],
-"dialogue":[["직원","何名様ですか。","몇 분이세요?","난메-사마데스카"],["나","一人です。","혼자입니다.","히토리데스"],["나","おすすめは何ですか。","추천은 무엇인가요?","오스스메와 난데스카"],["직원","こちらがおすすめです。","이쪽을 추천합니다.","코치라가 오스스메데스"],["나","じゃあ、これをお願いします。","그럼 이걸로 부탁드립니다.","쟈-, 코레오 오네가이시마스"]],
-"tip":"메뉴를 손가락으로 가리키며 \"これをお願いします\" 하나면 거의 모든 식당에서 통한다. 계산은 자리가 아니라 입구 계산대에서 하는 곳이 많다."},
-{"d":10,"title":"오코노미야키·히로시마 음식","route":"히로시마식 오코노미야키 식당","goal":"추천 메뉴, 면 선택, 맛 표현까지 말하기","core":[
-["お好み焼きが食べたいです。","오코노미야키를 먹고 싶습니다.","오코노미야키가 타베타이데스",5],
-["そばでお願いします。","소바면으로 부탁드립니다.","소바데 오네가이시마스",5],
-["牡蠣はありますか。","굴이 있나요?","카키와 아리마스카",4],
-["辛くないものはありますか。","맵지 않은 것이 있나요?","카라쿠나이 모노와 아리마스카",3],
-["とてもおいしいです。","정말 맛있습니다.","토테모 오이시-데스",5],
-["カウンター席でもいいです。","카운터석도 괜찮습니다.","카운타-세키데모 이이데스",3],
-["ビールも一つお願いします。","맥주도 하나 부탁드립니다.","비-루모 히토츠 오네가이시마스",4],
-["大盛りにできますか。","곱빼기로 가능한가요?","오-모리니 데키마스카",3]],
-"words":[["お好み焼き","おこのみやき","오코노미야키"],["広島風","ひろしまふう","히로시마식"],["牡蠣","かき","굴"],["辛い","からい","맵다"],["そば","そば","소바면"]],
-"pattern":["〜が食べたいです。","~을 먹고 싶습니다.","お好み焼きが食べたいです。 / 牡蠣が食べたいです。"],
-"dialogue":[["나","お好み焼きが食べたいです。","오코노미야키를 먹고 싶습니다.","오코노미야키가 타베타이데스"],["직원","そばとうどん、どちらにしますか。","소바와 우동, 어느 쪽으로 하시겠어요?","소바토 우동, 도치라니 시마스카"],["나","そばでお願いします。","소바면으로 부탁드립니다.","소바데 오네가이시마스"],["직원","はい。","네.","하이"],["나","ありがとうございます。","감사합니다.","아리가토-고자이마스"]],
-"tip":"히로시마에서는 그냥 お好み焼き라고 하면 당연히 히로시마식이 나온다 — 広島風은 붙일 필요가 없다. 면 선택 질문(そば/うどん)이 오면 そばでお願いします로 답하면 끝."},
-{"d":9,"title":"카페·라테·포장","route":"라테 맛집·사진 찍기 좋은 카페","goal":"매장/포장, 아이스/핫, 사이즈까지 말하기","core":[
-["カフェラテをお願いします。","카페라테 부탁드립니다.","카훼라테오 오네가이시마스",5],
-["アイスでお願いします。","아이스로 부탁드립니다.","아이스데 오네가이시마스",5],
-["ホットでお願いします。","따뜻한 걸로 부탁드립니다.","홋토데 오네가이시마스",4],
-["店内でお願いします。","매장에서 마시겠습니다.","텐나이데 오네가이시마스",5],
-["持ち帰りでお願いします。","포장으로 부탁드립니다.","모치카에리데 오네가이시마스",5],
-["砂糖なしでお願いします。","설탕 없이 부탁드립니다.","사토-나시데 오네가이시마스",3],
-["ここに座ってもいいですか。","여기 앉아도 되나요?","코코니 스왓테모 이이데스카",4],
-["Wi-Fiのパスワードは何ですか。","와이파이 비밀번호가 뭔가요?","와이화이노 파스와-도와 난데스카",3]],
-"words":[["店内","てんない","매장 안"],["持ち帰り","もちかえり","포장"],["砂糖","さとう","설탕"],["氷","こおり","얼음"],["普通","ふつう","보통"]],
-"pattern":["〜でお願いします。","~로 부탁드립니다.","アイスでお願いします。 / 店内でお願いします。"],
-"dialogue":[["직원","店内ですか、お持ち帰りですか。","매장인가요, 포장인가요?","텐나이데스카, 오모치카에리데스카"],["나","店内でお願いします。","매장으로 부탁드립니다.","텐나이데 오네가이시마스"],["직원","ホットですか、アイスですか。","핫인가요, 아이스인가요?","홋토데스카, 아이스데스카"],["나","アイスでお願いします。","아이스로 부탁드립니다.","아이스데 오네가이시마스"],["직원","サイズはいかがしますか。","사이즈는 어떻게 하시겠어요?","사이즈와 이카가시마스카"],["나","普通でお願いします。","보통으로 부탁드립니다.","후츠-데 오네가이시마스"]],
-"tip":"사이즈 질문을 못 알아들으면 \"普通でお願いします\"가 무난하다. 포장은 持ち帰り, 매장은 店内 두 단어만 기억하면 된다."},
-{"d":8,"title":"노면전차·시내 이동","route":"히로시마역 ↔ 원폭돔·시내","goal":"전차 행선지와 하차 위치를 확인하기","core":[
-["原爆ドーム前まで行きますか。","원폭돔 앞까지 가나요?","겐바쿠도-무마에마데 이키마스카",5],
-["何番乗り場ですか。","몇 번 승강장인가요?","난반 노리바데스카",4],
-["この電車で大丈夫ですか。","이 전차로 괜찮나요?","코노 덴샤데 다이죠-부데스카",5],
-["ICカードは使えますか。","IC카드 사용 가능한가요?","아이시-카-도와 츠카에마스카",4],
-["次で降ります。","다음에서 내립니다.","츠기데 오리마스",4],
-["ここで降ります。","여기서 내립니다.","코코데 오리마스",4],
-["どこで乗り換えますか。","어디서 갈아타나요?","도코데 노리카에마스카",3],
-["一日乗車券はありますか。","1일 승차권이 있나요?","이치니치 죠-샤켄와 아리마스카",3]],
-"words":[["電車","でんしゃ","전차"],["乗り場","のりば","승강장"],["原爆ドーム前","げんばくドームまえ","원폭돔 앞"],["降りる","おりる","내리다"],["乗り換え","のりかえ","환승"]],
-"pattern":["この〜で大丈夫ですか。","이 ~로 괜찮나요?","この電車で大丈夫ですか。 / このバスで大丈夫ですか。"],
-"dialogue":[["나","すみません、原爆ドーム前まで行きますか。","저기요, 원폭돔 앞까지 가나요?","스미마셍, 겐바쿠도-무마에마데 이키마스카"],["상대","はい、行きます。","네, 갑니다.","하이, 이키마스"],["나","この電車で大丈夫ですか。","이 전차로 괜찮나요?","코노 덴샤데 다이죠-부데스카"],["상대","大丈夫です。","괜찮습니다.","다이죠-부데스"],["나","ありがとうございます。","감사합니다.","아리가토-고자이마스"]],
-"tip":"히로덴은 2025년 PASPY 종료 후 MOBIRY DAYS로 바뀌어 Suica·ICOCA 같은 전국 IC카드를 못 쓸 수 있다(JR은 ICOCA 가능). 신용카드 터치나 현금을 준비하고, 출발 전 최신 결제 방식을 꼭 확인하자."},
-{"d":7,"title":"미야지마·페리·관광","route":"미야지마구치 → 페리 → 이쓰쿠시마 신사","goal":"왕복권, 사진, 사슴, 신사 관련 표현 말하기","core":[
-["宮島口まで行きたいです。","미야지마구치까지 가고 싶습니다.","미야지마구치마데 이키타이데스",4],
-["フェリー乗り場はどこですか。","페리 타는 곳은 어디인가요?","훼리- 노리바와 도코데스카",4],
-["往復でお願いします。","왕복으로 부탁드립니다.","오-후쿠데 오네가이시마스",5],
-["写真を撮ってもいいですか。","사진 찍어도 되나요?","샤신오 톳테모 이이데스카",5],
-["鹿に触ってもいいですか。","사슴을 만져도 되나요?","시카니 사왓테모 이이데스카",3],
-["次のフェリーは何時ですか。","다음 페리는 몇 시인가요?","츠기노 훼리-와 난지데스카",4],
-["大鳥居はどこですか。","오토리이(대도리이)는 어디인가요?","오-토리이와 도코데스카",4],
-["焼き牡蠣を一つください。","구운 굴 하나 주세요.","야키가키오 히토츠 쿠다사이",4]],
-"words":[["宮島","みやじま","미야지마"],["宮島口","みやじまぐち","미야지마구치"],["フェリー","フェリー","페리"],["往復","おうふく","왕복"],["鹿","しか","사슴"]],
-"pattern":["〜てもいいですか。","~해도 되나요?","写真を撮ってもいいですか。 / ここに入ってもいいですか。"],
-"dialogue":[["나","すみません、フェリー乗り場はどこですか。","저기요, 페리 타는 곳은 어디인가요?","스미마셍, 훼리- 노리바와 도코데스카"],["상대","まっすぐです。","직진입니다.","맛스구데스"],["나","往復でお願いします。","왕복으로 부탁드립니다.","오-후쿠데 오네가이시마스"],["직원","はい。","네.","하이"],["나","ありがとうございます。","감사합니다.","아리가토-고자이마스"]],
-"tip":"대도리이는 만조엔 바다에 뜨고 간조엔 걸어서 아래까지 갈 수 있어 풍경이 완전히 달라진다. 방문일 조석 시간을 미리 확인해 사진 타이밍을 잡자."},
-{"d":6,"title":"사진 부탁·촬영 매너","route":"혼자 여행 사진·거리 스냅","goal":"사진을 부탁하고 촬영 가능 여부를 묻기","core":[
-["写真をお願いできますか。","사진 부탁드려도 될까요?","샤신오 오네가이데키마스카",5],
-["ここで撮ってください。","여기서 찍어 주세요.","코코데 톳테 쿠다사이",4],
-["もう一枚お願いします。","한 장 더 부탁드립니다.","모- 이치마이 오네가이시마스",4],
-["縦でお願いします。","세로로 부탁드립니다.","타테데 오네가이시마스",3],
-["横でお願いします。","가로로 부탁드립니다.","요코데 오네가이시마스",3],
-["このボタンを押すだけです。","이 버튼만 누르면 됩니다.","코노 보탄오 오스다케데스",4],
-["背景も入れてください。","배경도 넣어 주세요.","하이케-모 이레테 쿠다사이",3],
-["撮りましょうか。","(제가) 찍어 드릴까요?","토리마쇼-카",3]],
-"words":[["写真","しゃしん","사진"],["一枚","いちまい","한 장"],["縦","たて","세로"],["横","よこ","가로"],["撮る","とる","찍다"]],
-"pattern":["〜をお願いできますか。","~을 부탁드려도 될까요?","写真をお願いできますか。"],
-"dialogue":[["나","すみません、写真をお願いできますか。","저기요, 사진 부탁드려도 될까요?","스미마셍, 샤신오 오네가이데키마스카"],["상대","いいですよ。","좋아요.","이이데스요"],["나","このボタンを押すだけです。","이 버튼만 누르면 됩니다.","코노 보탄오 오스다케데스"],["상대","はい、撮ります。","네, 찍을게요.","하이, 토리마스"],["나","ありがとうございます。","감사합니다.","아리가토-고자이마스"]],
-"tip":"낯선 사람에게 부탁할 때는 写真を撮ってください보다 写真をお願いできますか가 훨씬 부드럽다. 카메라를 건네며 このボタンを押すだけです까지 말하면 원하는 구도로 받을 확률이 올라간다."},
-{"d":5,"title":"쇼핑·기념품·가격","route":"상점가·기념품·선물 구매","goal":"가격, 인기 상품, 수량, 면세를 말하기","core":[
-["これはいくらですか。","이것은 얼마인가요?","코레와 이쿠라데스카",5],
-["お土産を探しています。","기념품을 찾고 있습니다.","오미야게오 사가시테이마스",4],
-["人気のものは何ですか。","인기 있는 것은 무엇인가요?","닌키노 모노와 난데스카",4],
-["これを三つください。","이것 세 개 주세요.","코레오 밋츠 쿠다사이",4],
-["免税できますか。","면세 가능한가요?","멘제- 데키마스카",3],
-["見ているだけです。","그냥 구경하는 중입니다.","미테이루다케데스",4],
-["別々に包んでください。","따로따로 포장해 주세요.","베츠베츠니 츠츤데 쿠다사이",3],
-["もう少し安いものはありますか。","좀 더 싼 것이 있나요?","모- 스코시 야스이 모노와 아리마스카",3]],
-"words":[["土産","みやげ","기념품"],["人気","にんき","인기"],["三つ","みっつ","세 개"],["値段","ねだん","가격"],["免税","めんぜい","면세"]],
-"pattern":["これを〜ください。","이것을 ~개 주세요.","これを一つください。 / これを三つください。"],
-"dialogue":[["나","これはいくらですか。","이것은 얼마인가요?","코레와 이쿠라데스카"],["직원","千円です。","천 엔입니다.","셍엔데스"],["나","これを三つください。","이것 세 개 주세요.","코레오 밋츠 쿠다사이"],["직원","ありがとうございます。","감사합니다.","아리가토-고자이마스"],["나","免税できますか。","면세 가능한가요?","멘제- 데키마스카"]],
-"tip":"수량은 一つ(히토츠)·二つ(후타츠)·三つ(밋츠)까지만 확실히 하고, 그 이상은 손가락이 정확하다. 점원이 부담스러우면 見ているだけです 한마디면 된다."},
-{"d":4,"title":"이자카야·맥주·계산","route":"저녁 이자카야에서 생맥주와 안주","goal":"음료 주문, 추가 주문, 계산을 자연스럽게 하기","core":[
-["生ビールをお願いします。","생맥주 부탁드립니다.","나마비-루오 오네가이시마스",5],
-["とりあえず生で。","우선 생맥주부터요.","토리아에즈 나마데",5],
-["おすすめの料理は何ですか。","추천 요리는 무엇인가요?","오스스메노 료-리와 난데스카",4],
-["もう一杯お願いします。","한 잔 더 부탁드립니다.","모- 잇파이 오네가이시마스",4],
-["お会計をお願いします。","계산 부탁드립니다.","오카이케-오 오네가이시마스",5],
-["ごちそうさまでした。","잘 먹었습니다.","고치소-사마데시타",5],
-["お通しは何ですか。","오토시(기본 안주)는 뭔가요?","오토-시와 난데스카",3],
-["席は空いていますか。","자리가 있나요?","세키와 아이테이마스카",4]],
-"words":[["生ビール","なまビール","생맥주"],["料理","りょうり","요리"],["一杯","いっぱい","한 잔"],["会計","かいけい","계산"],["お通し","おとおし","기본 안주/자릿세"]],
-"pattern":["もう〜お願いします。","~ 더 부탁드립니다.","もう一杯お願いします。 / もう一つお願いします。"],
-"dialogue":[["나","生ビールをお願いします。","생맥주 부탁드립니다.","나마비-루오 오네가이시마스"],["직원","はい。","네.","하이"],["나","おすすめの料理は何ですか。","추천 요리는 무엇인가요?","오스스메노 료-리와 난데스카"],["직원","牡蠣がおすすめです。","굴을 추천합니다.","카키가 오스스메데스"],["나","じゃあ、それをお願いします。","그럼 그걸로 부탁드립니다.","쟈-, 소레오 오네가이시마스"]],
-"tip":"주문 안 해도 나오는 お通し는 자릿세 성격의 기본 안주니 당황하지 말 것. 첫 주문은 とりあえず生で 한마디면 현지인처럼 들린다."},
-{"d":3,"title":"길 묻기·위치·시간","route":"골목·관광지·카페 찾기","goal":"가까운지, 걸어서 가능한지, 방향을 묻기","core":[
-["ここから近いですか。","여기서 가깝나요?","코코카라 치카이데스카",4],
-["歩いて行けますか。","걸어서 갈 수 있나요?","아루이테 이케마스카",5],
-["右ですか、左ですか。","오른쪽인가요, 왼쪽인가요?","미기데스카, 히다리데스카",4],
-["もう一度お願いします。","한 번 더 말씀해 주세요.","모- 이치도 오네가이시마스",5],
-["ゆっくりお願いします。","천천히 부탁드립니다.","윳쿠리 오네가이시마스",5],
-["ここはどこですか。","여기가 어디인가요?","코코와 도코데스카",3],
-["この住所に行きたいです。","이 주소로 가고 싶습니다.","코노 쥬-쇼니 이키타이데스",4],
-["何分ぐらいかかりますか。","몇 분 정도 걸리나요?","난푼구라이 카카리마스카",4]],
-"words":[["近い","ちかい","가깝다"],["歩く","あるく","걷다"],["右","みぎ","오른쪽"],["左","ひだり","왼쪽"],["地図","ちず","지도"]],
-"pattern":["〜はどこですか。","~은 어디인가요?","トイレはどこですか。 / 駅はどこですか。"],
-"dialogue":[["나","すみません、ここから近いですか。","저기요, 여기서 가깝나요?","스미마셍, 코코카라 치카이데스카"],["상대","はい、近いです。","네, 가깝습니다.","하이, 치카이데스"],["나","歩いて行けますか。","걸어서 갈 수 있나요?","아루이테 이케마스카"],["상대","行けます。まっすぐです。","갈 수 있습니다. 직진입니다.","이케마스. 맛스구데스"],["나","ありがとうございます。","감사합니다.","아리가토-고자이마스"]],
-"tip":"설명을 다 알아들으려 하지 말고 右(오른쪽)·左(왼쪽)·まっすぐ(직진)·近い(가깝다) 네 단어만 잡자. 지도 화면을 같이 보여주면 성공률이 크게 오른다."},
-{"d":2,"title":"문제 상황·응급·분실","route":"아플 때·잃어버렸을 때·도움 요청","goal":"불편함과 도움 요청을 최소 문장으로 말하기","core":[
-["助けてください。","도와주세요.","타스케테 쿠다사이",5],
-["財布をなくしました。","지갑을 잃어버렸습니다.","사이후오 나쿠시마시타",4],
-["パスポートをなくしました。","여권을 잃어버렸습니다.","파스포-토오 나쿠시마시타",4],
-["気分が悪いです。","몸 상태가 안 좋습니다.","키붕가 와루이데스",4],
-["頭が痛いです。","머리가 아픕니다.","아타마가 이타이데스",4],
-["熱があります。","열이 있습니다.","네츠가 아리마스",3],
-["薬局はどこですか。","약국은 어디인가요?","얏쿄쿠와 도코데스카",4],
-["韓国語ができる人はいますか。","한국어 가능한 사람이 있나요?","캉코쿠고가 데키루 히토와 이마스카",3]],
-"words":[["財布","さいふ","지갑"],["薬局","やっきょく","약국"],["病院","びょういん","병원"],["気分","きぶん","몸 상태/기분"],["警察","けいさつ","경찰"]],
-"pattern":["〜をなくしました。","~을 잃어버렸습니다.","財布をなくしました。 / パスポートをなくしました。"],
-"dialogue":[["나","すみません、財布をなくしました。","저기요, 지갑을 잃어버렸습니다.","스미마셍, 사이후오 나쿠시마시타"],["상대","どこでなくしましたか。","어디서 잃어버렸나요?","도코데 나쿠시마시타카"],["나","わかりません。","모르겠습니다.","와카리마셍"],["나","韓国語ができる人はいますか。","한국어 가능한 사람이 있나요?","캉코쿠고가 데키루 히토와 이마스카"],["상대","確認します。","확인하겠습니다.","카쿠닌시마스"]],
-"tip":"응급 땐 문장을 예쁘게 만들 필요 없다 — 助けてください, 気分が悪いです, なくしました면 충분하다. 가벼운 증상은 드러그스토어에서 증상만 말하면 약을 골라 준다."},
-{"d":1,"title":"최종 실전 시뮬레이션","route":"출국 전날 20분 총정리","goal":"여행 전체를 10문장으로 압축해 자동반응 만들기","core":[
-["すみません。","실례합니다 / 저기요","스미마셍",5],
-["お願いします。","부탁드립니다.","오네가이시마스",5],
-["これをください。","이것 주세요.","코레오 쿠다사이",5],
-["大丈夫です。","괜찮습니다.","다이죠-부데스",5],
-["ありがとうございます。","감사합니다.","아리가토-고자이마스",5],
-["トイレはどこですか。","화장실은 어디인가요?","토이레와 도코데스카",5],
-["おすすめは何ですか。","추천은 무엇인가요?","오스스메와 난데스카",5],
-["カードは使えますか。","카드 사용 가능한가요?","카-도와 츠카에마스카",5],
-["お会計をお願いします。","계산 부탁드립니다.","오카이케-오 오네가이시마스",5],
-["ゆっくりお願いします。","천천히 부탁드립니다.","윳쿠리 오네가이시마스",5]],
-"words":[["駅","えき","역"],["写真","しゃしん","사진"],["会計","かいけい","계산"],["荷物","にもつ","짐"],["予約","よやく","예약"]],
-"pattern":["5대 생존 패턴","すみません / お願いします / ください / 大丈夫です / ありがとうございます","이 5개가 여행 일본어의 뼈대다."],
-"dialogue":[["나","すみません。","실례합니다.","스미마셍"],["상대","はい。","네.","하이"],["나","これをください。","이것 주세요.","코레오 쿠다사이"],["상대","はい。","네.","하이"],["나","ありがとうございます。","감사합니다.","아리가토-고자이마스"]],
-"tip":"출국 전날에는 새 표현을 늘리지 말고 스피킹 랜덤 탭으로 전 범위를 섞어서 돌리자. 정확한 문법보다 \"반응 속도\"가 실제 여행 만족도를 좌우한다."}],
-"top":[
-["すみません。","실례합니다 / 저기요","스미마셍",5],
-["お願いします。","부탁드립니다.","오네가이시마스",5],
-["ありがとうございます。","감사합니다.","아리가토-고자이마스",5],
-["大丈夫です。","괜찮습니다.","다이죠-부데스",5],
-["わかりません。","모르겠습니다.","와카리마셍",5],
-["もう一度お願いします。","한 번 더 말씀해 주세요.","모- 이치도 오네가이시마스",5],
-["ゆっくりお願いします。","천천히 부탁드립니다.","윳쿠리 오네가이시마스",5],
-["これをください。","이것 주세요.","코레오 쿠다사이",5],
-["これをお願いします。","이걸로 부탁드립니다.","코레오 오네가이시마스",5],
-["おすすめは何ですか。","추천은 무엇인가요?","오스스메와 난데스카",5],
-["お会計をお願いします。","계산 부탁드립니다.","오카이케-오 오네가이시마스",5],
-["カードは使えますか。","카드 사용 가능한가요?","카-도와 츠카에마스카",4],
-["現金でお願いします。","현금으로 부탁드립니다.","겡킹데 오네가이시마스",4],
-["トイレはどこですか。","화장실은 어디인가요?","토이레와 도코데스카",5],
-["ここから近いですか。","여기서 가깝나요?","코코카라 치카이데스카",4],
-["歩いて行けますか。","걸어서 갈 수 있나요?","아루이테 이케마스카",4],
-["写真を撮ってもいいですか。","사진 찍어도 되나요?","샤신오 톳테모 이이데스카",4],
-["写真をお願いできますか。","사진 부탁드려도 될까요?","샤신오 오네가이데키마스카",4],
-["一人です。","혼자입니다.","히토리데스",4],
-["予約しています。","예약했습니다.","요야쿠시테이마스",4],
-["広島駅まで行きたいです。","히로시마역까지 가고 싶습니다.","히로시마에키마데 이키타이데스",4],
-["原爆ドーム前まで行きますか。","원폭돔 앞까지 가나요?","겐바쿠도-무마에마데 이키마스카",4],
-["店内でお願いします。","매장에서 마시겠습니다.","텐나이데 오네가이시마스",4],
-["持ち帰りでお願いします。","포장으로 부탁드립니다.","모치카에리데 오네가이시마스",4],
-["生ビールをお願いします。","생맥주 부탁드립니다.","나마비-루오 오네가이시마스",4],
-["とりあえず生で。","우선 생맥주부터요.","토리아에즈 나마데",4],
-["ごちそうさまでした。","잘 먹었습니다.","고치소-사마데시타",4],
-["助けてください。","도와주세요.","타스케테 쿠다사이",3],
-["薬局はどこですか。","약국은 어디인가요?","얏쿄쿠와 도코데스카",3],
-["韓国語ができる人はいますか。","한국어 가능한 사람이 있나요?","캉코쿠고가 데키루 히토와 이마스카",3]]};
-const RUBY={'一日乗車券':'いちにちじょうしゃけん','原爆ドーム前':'げんばくドームまえ','お好み焼き':'おこのみやき','お手洗い':'おてあらい','焼き牡蠣':'やきがき','持ち帰り':'もちかえり','広島駅':'ひろしまえき','広島風':'ひろしまふう','大鳥居':'おおとりい','大盛り':'おおもり','何名様':'なんめいさま','乗り換え':'のりかえ','案内所':'あんないじょ','韓国語':'かんこくご','お通し':'おとおし','お願い':'おねがい','空いて':'あいて','入って':'はいって','入れて':'いれて','大丈夫':'だいじょうぶ','日本語':'にほんご','乗り場':'のりば','宮島口':'みやじまぐち','別々':'べつべつ','朝食':'ちょうしょく','何時':'なんじ','何分':'なんぷん','何番':'なんばん','住所':'じゅうしょ','背景':'はいけい','大人':'おとな','広島':'ひろしま','空港':'くうこう','切符':'きっぷ','予約':'よやく','名前':'なまえ','部屋':'へや','荷物':'にもつ','鍵':'かぎ','袋':'ふくろ','箸':'はし','水':'みず','弁当':'べんとう','一人':'ひとり','二人':'ふたり','席':'せき','注文':'ちゅうもん','温め':'あたため','牡蠣':'かき','辛':'から','食':'た','店内':'てんない','砂糖':'さとう','氷':'こおり','普通':'ふつう','電車':'でんしゃ','原爆':'げんばく','宮島':'みやじま','往復':'おうふく','鹿':'しか','写真':'しゃしん','一枚':'いちまい','一杯':'いっぱい','一度':'いちど','一つ':'ひとつ','二つ':'ふたつ','三つ':'みっつ','縦':'たて','横':'よこ','土産':'みやげ','人気':'にんき','値段':'ねだん','免税':'めんぜい','生':'なま','料理':'りょうり','会計':'かいけい','千円':'せんえん','現金':'げんきん','確認':'かくにん','英語':'えいご','近':'ちか','歩':'ある','右':'みぎ','左':'ひだり','地図':'ちず','財布':'さいふ','薬局':'やっきょく','病院':'びょういん','気分':'きぶん','警察':'けいさつ','人':'ひと','時間':'じかん','何':'なん','駅':'えき','行':'い','買':'か','使':'つか','探':'さが','触':'さわ','助':'たす','次':'つぎ','座':'すわ','押':'お','見':'み','包':'つつ','少':'すこ','安':'やす','頭':'あたま','痛':'いた','熱':'ねつ','払':'はら','同':'おな','悪':'わる','預':'あず','降':'お','撮':'と','利用':'りよう'};
-const RKEYS=Object.keys(RUBY).sort((a,b)=>b.length-a.length);
-function rubyText(s){let out=s;const arr=[];RKEYS.forEach(k=>{if(out.indexOf(k)===-1)return;out=out.split(k).join('\u0001'+arr.length+'\u0001');arr.push('<ruby>'+k+'<rt>'+RUBY[k]+'</rt></ruby>');});arr.forEach((v,i)=>out=out.split('\u0001'+i+'\u0001').join(v));return out;}
-/* ---- 상태 저장 ---- */
-const LSKEY='hiro_d14_v3';
-let S={done:{},last:null,best:null};
-try{const raw=localStorage.getItem(LSKEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
-function save(){try{localStorage.setItem(LSKEY,JSON.stringify(S));}catch(e){}}
-/* ---- 날짜 ---- */
-const DEPART=new Date(2026,6,27);const WD=['일','월','화','수','목','금','토'];
-function dateFor(d){const t=new Date(2026,6,27-d);return (t.getMonth()+1)+'/'+t.getDate()+'('+WD[t.getDay()]+')';}
-function todayD(){const now=new Date();const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());const diff=Math.round((DEPART-t0)/86400000);return diff;}
-/* ---- TTS ---- */
-const TTS=('speechSynthesis' in window);
-function speak(t){if(!TTS)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=0.85;speechSynthesis.speak(u);}
-function speakAll(list){if(!TTS)return;speechSynthesis.cancel();list.forEach(t=>{const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=0.85;speechSynthesis.speak(u);});}
-/* ---- 공통 렌더 ---- */
-let cur=0;
-const $=id=>document.getElementById(id);
-const app=$('view-lesson'),nav=$('nav'),headDay=$('headDay'),prog=$('prog');
-function starStr(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
-function phraseCard(p,src,i){return '<div class="phrase"><div class="stars">'+starStr(p[3]||5)+'</div><div class="jp">'+rubyText(p[0])+'</div><div class="ko">'+p[1]+'</div><div class="sound"><span>'+p[2]+'</span>'+(TTS?'<button class="spk" onclick="speak('+src+'['+i+'][0])">🔊 듣기</button>':'')+'</div></div>';}
-function renderNav(){nav.innerHTML=DATA.days.map((d,i)=>'<button class="chip '+(i===cur?'active':'')+' '+(S.done[d.d]?'done':'')+'" onclick="goDay('+i+')">D-'+d.d+(S.done[d.d]?' ✓':'')+'<small>'+dateFor(d.d)+'</small></button>').join('');}
-function goDay(i){cur=i;S.last=i;save();render();window.scrollTo({top:0});}
-function updateProg(){const n=DATA.days.filter(d=>S.done[d.d]).length;prog.style.width=(n/DATA.days.length*100)+'%';}
-/* ---- 5초 테스트 ---- */
-const QT={};
-function quizCard(idx,src,extra){
-return '<div class="q" id="q'+idx+'"><div class="qko">Q. '+src[idx][1]+'</div><div class="qbar"><span></span></div>'+
-'<div class="qbtns"><button class="go" onclick="startQ('+idx+')">▶ 5초 스타트</button><button onclick="revealQ('+idx+')">바로 보기</button></div>'+
-'<div class="qans"><div class="jp">'+rubyText(src[idx][0])+'</div><div class="sound"><span>'+src[idx][2]+'</span>'+(TTS?'<button class="spk" onclick="speak(QSRC['+idx+'][0])">🔊 듣기</button>':'')+'</div>'+(extra||'')+'</div></div>';}
-let QSRC=[];
-function startQ(i){const el=$('q'+i);if(!el||el.classList.contains('show'))return;el.classList.add('run');el.offsetWidth;QT[i]=setTimeout(()=>revealQ(i),5000);}
-function revealQ(i){const el=$('q'+i);if(!el)return;clearTimeout(QT[i]);el.classList.remove('run');el.classList.add('show');speak(QSRC[i][0]);}
-/* ---- 특훈 탭 ---- */
-function render(){
-const d=DATA.days[cur];QSRC=d.core;
-headDay.firstChild.textContent='D-'+d.d+' · '+dateFor(d.d);
-updateProg();renderNav();
-const doneBtn=$('doneBtn');doneBtn.textContent=S.done[d.d]?'✓ D-'+d.d+' 완료됨':'D-'+d.d+' 완료';doneBtn.classList.toggle('ok',!!S.done[d.d]);
-const td=todayD();const warm=(cur===0&&td>14)?'<div class="tip" style="margin-bottom:14px"><div class="i">🔥</div><div>아직 <b>D-'+td+'</b>입니다. 본 훈련은 <b>7/13(월) D-14</b>부터 — 그전까지는 <b>TOP 문장</b> 탭으로 매일 5분씩 입을 예열해 두세요.</div></div>':'';
-app.innerHTML=warm+
-'<div class="hero"><div class="dday">D-'+d.d+' · '+dateFor(d.d)+'</div><h1>'+d.title+'</h1><p>'+d.route+'</p><p>🎯 '+d.goal+'</p></div>'+
-'<div class="card"><div class="sec"><span class="num">1</span>오늘 반드시 말할 문장'+(TTS?'<button class="act" onclick="speakAll(DATA.days[cur].core.map(c=>c[0]))">▶ 전체 듣기</button>':'')+'</div><div class="grid">'+d.core.map((p,i)=>phraseCard(p,'DATA.days[cur].core',i)).join('')+'</div></div>'+
-'<div class="card"><div class="sec"><span class="num">2</span>한자 읽기 핵심 단어</div><div class="wordlist">'+d.words.map((w,i)=>'<div class="word"><div class="jp"><ruby>'+w[0]+'<rt>'+w[1]+'</rt></ruby></div><div class="ko">'+w[2]+(TTS?' <button class="spk" onclick="speak(DATA.days[cur].words['+i+'][0])">🔊</button>':'')+'</div></div>').join('')+'</div></div>'+
-'<div class="card pattern"><div class="sec"><span class="num">3</span>오늘의 돌려쓰기 패턴</div><div class="jp">'+rubyText(d.pattern[0])+'</div><div class="ko">'+d.pattern[1]+'</div><div class="sound">'+rubyText(d.pattern[2])+'</div></div>'+
-'<div class="card"><div class="sec"><span class="num">4</span>실전 대화문'+(TTS?'<button class="act" onclick="speakAll(DATA.days[cur].dialogue.map(x=>x[1]))">▶ 전체 듣기</button>':'')+'</div><div class="dialogue">'+d.dialogue.map((x,i)=>'<div class="line '+(x[0]==='나'?'':'other')+'"><div class="who">'+x[0]+'</div><div class="bubble"><div class="jp">'+rubyText(x[1])+'</div><div class="ko">'+x[2]+'</div><div class="sound"><span>'+x[3]+'</span>'+(TTS?'<button class="spk" onclick="speak(DATA.days[cur].dialogue['+i+'][1])">🔊</button>':'')+'</div></div></div>').join('')+'</div></div>'+
-'<div class="card"><div class="sec"><span class="num">5</span>한국어 → 5초 → 일본어</div><div class="note" style="margin:0 0 10px">한국어를 보고 소리 내서 먼저 말한 뒤, 5초 후 공개되는 일본어와 비교하세요.</div><div class="quiz">'+d.core.map((c,i)=>quizCard(i,d.core)).join('')+'</div></div>'+
-'<div class="card"><div class="sec"><span class="num">6</span>현지 사용 TIP</div><div class="tip"><div class="i">💡</div><div>'+d.tip+'</div></div></div>';
+/* ─────────── 과정 정의 ─────────── */
+/* 주 라벨 = 그 주 application 일(D5/12/19/26)의 종합 주제 기준.
+   한 주 = 신규 4일 + 응용 1일 + 듣기 복습 1일 + 말하기 테스트 1일. */
+const MONTHS = [
+  { n:1, color:'blue', file:'japanese-month1.html', key:'jp.progress', ready:true,
+    title:'첫 만남과 생존 회화',
+    goal:'첫 만남과 이해 요청부터 가격·숫자, 카페와 식당까지',
+    weeks:['첫 만남 · 이해 요청 · 위치 질문',
+           '가격 · 수량 · 금액 · 결제',
+           '카페 주문 · 옵션 · 문제 해결',
+           '식당 입장 · 재료 · 맛 · 계산'] },
+
+  { n:2, color:'green', file:'japanese-month2.html', key:'jp.progress.m2', ready:true,
+    title:'혼자 이동하고 머물기',
+    goal:'교통과 쇼핑, 호텔과 예약·전화에서 안내를 알아듣기',
+    weeks:['표 · 노선 · 환승 · 지연 대처',
+           '사이즈 · 비교 · 할인 · 반품 · 포장',
+           '호텔 체크인 · 객실 · 짐 · 체크아웃',
+           '예약 · 변경 · 일정 조율 · 전화'] },
+
+  { n:3, color:'yellow', file:'japanese-month3.html', key:'jp.progress.m3', ready:true,
+    title:'두 문장으로 말하기',
+    goal:'취미와 경험, 초대와 거절을 이유까지 붙여 이어 말하기',
+    weeks:['취미 · 빈도 · 잘하는 것 · 공감',
+           '주말 · 과거 경험 · 여행 감상 · 시간 순서',
+           '주말 계획 · 초대 · 약속 조율 · 거절',
+           '이유 설명 · 비교와 선택 · 일정 변경 · 상담'] },
+
+  { n:4, color:'red', file:'japanese-month4.html', key:'jp.progress.m4', ready:false,
+    title:'사람과 이어지기',
+    goal:'약속과 초대, 자연스러운 반응과 부탁',
+    weeks:['시간 · 날짜 · 장소 · 일정 변경',
+           '초대 · 제안 · 수락 · 부드러운 거절',
+           '놀람 · 공감 · 동의 · 약한 반대',
+           '도움 요청 · 허락 · 부탁 · 응답'] },
+
+  { n:5, color:'brown', file:'japanese-month5.html', key:'jp.progress.m5', ready:false,
+    title:'생각을 말하기',
+    goal:'의견과 추천, 감정 표현, 자연 속도 실전',
+    weeks:['좋고 싫음 · 선호 · 이유 붙이기',
+           '음식 · 장소 추천 · 권유 · 만류',
+           '기쁨 · 피곤 · 걱정 · 아쉬움',
+           '자연 속도 듣기 · 자유 역할극'] },
+];
+const DAYS_PER_MONTH = 28;
+
+/* ─────────── 진도 읽기 ─────────── */
+function readProgress(key){
+  try{
+    const raw = localStorage.getItem(key);
+    if (!raw) return {};
+    const v = JSON.parse(raw);
+    return (v && typeof v === 'object') ? v : {};
+  }catch(e){ return {}; }
 }
-/* ---- TOP 탭 ---- */
-function renderTop(){
-$('view-top').innerHTML='<div class="hero"><div class="dday">TOP 30</div><h1>여행 필수 문장</h1><p>출국 직전에는 이 문장만 빠르게 돌리면 됩니다. ★ 개수 = 사용 빈도.</p></div>'+
-'<div class="card"><div class="sec"><span class="num">★</span>빈도순 TOP 30'+(TTS?'<button class="act" onclick="speakAll(DATA.top.map(c=>c[0]))">▶ 전체 듣기</button>':'')+'</div><div class="grid">'+DATA.top.map((p,i)=>phraseCard(p,'DATA.top',i)).join('')+'</div></div>';
+const doneOf = m => Object.values(readProgress(m.key)).filter(Boolean).length;
+
+/* ─────────── 월 카드 ─────────── */
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function card(m, isNext){
+  const done = doneOf(m);
+  const pct  = Math.round(done/DAYS_PER_MONTH*100);
+  const prog = readProgress(m.key);
+  let label, foot;
+  if (!m.ready){ label = '준비 중'; foot = `<div class="mfoot soon"><span>곧 열립니다</span><span>·····</span></div>`; }
+  else if (done === 0){ label = '시작 전'; foot = `<div class="mfoot" style="background:var(--${m.color})"><span>학습 시작</span><span class="arw">›</span></div>`; }
+  else if (done >= DAYS_PER_MONTH){ label = '완료'; foot = `<div class="mfoot" style="background:var(--${m.color})"><span>다시 보기</span><span class="arw">›</span></div>`; }
+  else { label = `${pct}%`; foot = `<div class="mfoot" style="background:var(--${m.color})"><span>Day ${done+1} 이어서</span><span class="arw">›</span></div>`; }
+
+  const inner = `
+    <div class="head">
+      <div class="mnum ${isNext?'pulse':''}" style="background:var(--${m.color});box-shadow:0 7px 18px -8px var(--${m.color}-d)">
+        ${m.n}<small>MONTH</small></div>
+      <div class="mhead">
+        <div class="mtitle">${esc(m.title)}</div>
+        <div class="mgoal">${esc(m.goal)}</div>
+      </div>
+      <div class="mstate ${m.ready&&done?'live':''}" ${m.ready&&done?`style="background:var(--${m.color})"`:''}>${label}</div>
+    </div>
+    <div class="weeks">
+      ${m.weeks.map((w,i)=>`<div class="wk"><b>W${i+1}</b><span>${esc(w)}</span></div>`).join('')}
+    </div>
+    <div class="track">
+      <div class="dots28">${Array.from({length:DAYS_PER_MONTH},(_,i)=>
+        `<i class="${prog[i+1]?'on':''}" ${prog[i+1]?`style="background:var(--${m.color})"`:''}></i>`).join('')}</div>
+    </div>
+    ${foot}`;
+
+  return m.ready
+    ? `<a class="month glass rise" href="${m.file}">${inner}</a>`
+    : `<div class="month glass rise locked">${inner}</div>`;
 }
-/* ---- 스피킹 랜덤 탭 ---- */
-let POOL=[],SP={i:0,o:0,x:0};
-function buildPool(){POOL=[];DATA.days.forEach(d=>d.core.forEach(c=>POOL.push({d:d.d,t:d.title,p:c})));
-for(let i=POOL.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[POOL[i],POOL[j]]=[POOL[j],POOL[i]];}
-POOL=POOL.slice(0,20);SP={i:0,o:0,x:0};}
-function renderSpeak(){
-const v=$('view-speak');
-if(SP.i>=POOL.length){const total=SP.o+SP.x;const pct=total?Math.round(SP.o/total*100):0;
-if(S.best===null||pct>S.best){S.best=pct;save();}
-v.innerHTML='<div class="hero"><div class="dday">RESULT</div><h1>스피킹 랜덤 20문장</h1><p>전 일차에서 무작위로 뽑은 문장으로 반응 속도를 테스트합니다.</p></div><div class="card sdone"><div class="big">'+SP.o+' / '+total+'</div><p>정답률 '+pct+'% · 최고 기록 '+S.best+'%</p><button class="restart" onclick="buildPool();renderSpeak()">🔀 다시 섞어서 시작</button></div>';return;}
-const it=POOL[SP.i];QSRC=POOL.map(x=>x.p);
-v.innerHTML='<div class="hero"><div class="dday">SPEAKING</div><h1>스피킹 랜덤 테스트</h1><p>한국어를 보고 바로 입으로. 5초 안에 나오면 실전 합격.</p></div>'+
-'<div class="speakCard"><div class="scount">'+(SP.i+1)+' / '+POOL.length+' · 지금까지 ⭕ '+SP.o+' ❌ '+SP.x+'</div><div class="tag">D-'+it.d+' · '+it.t+'</div>'+
-quizCard(SP.i,QSRC.map(p=>p),'<div class="ox"><button class="o" onclick="spMark(1)">⭕ 5초 안에 말했다</button><button class="x" onclick="spMark(0)">❌ 다시 볼 문장</button></div>')+
-'</div>';
+
+function paint(){
+  const totalDone = MONTHS.reduce((a,m)=>a+doneOf(m),0);
+  const total = MONTHS.length*DAYS_PER_MONTH;
+  const nextM = MONTHS.find(m=>m.ready && doneOf(m) < DAYS_PER_MONTH) || null;
+
+  document.getElementById('months').innerHTML = MONTHS.map(m=>card(m, nextM && m.n===nextM.n && doneOf(m)===0)).join('');
+
+  const ring = document.getElementById('ring');
+  document.getElementById('ringN').innerHTML = `${totalDone}<i>/${total}</i>`;
+  setTimeout(()=>{ ring.style.setProperty('--p', (totalDone/total*100).toFixed(1)+'%'); }, 380);
+
+  const t1 = document.getElementById('sumT'), t2 = document.getElementById('sumD');
+  if (totalDone === 0){ t1.textContent='이제 시작해요'; t2.textContent='1개월차 Day 1부터 차근차근'; }
+  else if (nextM){
+    const d = doneOf(nextM);
+    t1.textContent = `${totalDone}일째 학습 중`;
+    t2.textContent = d >= DAYS_PER_MONTH ? `${nextM.n}개월차 완료` : `다음은 ${nextM.n}개월차 Day ${d+1}`;
+  } else { t1.textContent='열려 있는 과정을 모두 마쳤어요'; t2.textContent='다음 달 과정을 기다려 주세요'; }
+
+  observe();
 }
-function spMark(ok){if(ok)SP.o++;else SP.x++;SP.i++;renderSpeak();window.scrollTo({top:0});}
-/* ---- 탭/이동 ---- */
-function setTab(name){document.body.className='mode-'+name;['lesson','top','speak'].forEach(t=>$('tab-'+t).classList.toggle('on',t===name));
-if(TTS)speechSynthesis.cancel();
-if(name==='lesson'){QSRC=DATA.days[cur].core;render();}
-if(name==='top')renderTop();
-if(name==='speak'){buildPool();renderSpeak();}}
-$('tab-lesson').onclick=()=>setTab('lesson');
-$('tab-top').onclick=()=>setTab('top');
-$('tab-speak').onclick=()=>setTab('speak');
-$('prev').onclick=()=>{if(cur>0)goDay(cur-1);};
-$('next').onclick=()=>{if(cur<DATA.days.length-1)goDay(cur+1);};
-$('doneBtn').onclick=()=>{const d=DATA.days[cur].d;S.done[d]=!S.done[d];if(!S.done[d])delete S.done[d];save();render();};
-/* ---- 시작 위치: 저장된 일차 → 없으면 오늘 날짜 기준 자동 ---- */
-(function(){
-const td=todayD();$('realD').textContent=td>0?'출발까지 '+td+'일':(td===0?'출발일!':'여행 중');
-if(S.last!==null&&S.last>=0&&S.last<DATA.days.length)cur=S.last;
-else{const idx=DATA.days.findIndex(x=>x.d===td);if(idx>=0)cur=idx;}
-render();
-})();
+
+/* ─────────── 스크롤 등장 ─────────── */
+let io;
+function observe(){
+  if (io) io.disconnect();
+  io = new IntersectionObserver(es=>{
+    es.forEach((e,i)=>{
+      if (e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('in'), i*70);
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rise:not(.in)').forEach(el=>io.observe(el));
+}
+
+/* ─────────── 스크롤 반응 ─────────── */
+const bg = document.querySelectorAll('#bg i');
+const sb = document.getElementById('scrollbar');
+let ticking = false;
+function onScroll(){
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(()=>{
+    const y = window.scrollY;
+    const h = Math.max(1, document.body.scrollHeight - innerHeight);
+    sb.style.width = Math.min(100, y/h*100) + '%';
+    bg.forEach((el,i)=>{ el.style.transform = `translate3d(0, ${y * (0.06 + i*0.035)}px, 0)`; });
+    ticking = false;
+  });
+}
+addEventListener('scroll', onScroll, {passive:true});
+
+/* 탭 복귀 시 진도 갱신 (월별 앱에서 돌아왔을 때) */
+addEventListener('pageshow', paint);
+document.addEventListener('visibilitychange', ()=>{ if (!document.hidden) paint(); });
+
+paint();
+onScroll();
 </script>
 </body>
 </html>
