@@ -681,7 +681,7 @@ function buildSteps(d){
       const label = `표현 ${i+1}`;
       push(label, 'expr', e);
       const sh = shadowBy[e.id] || shadowBy[i];
-      if (sh) push(label, 'shadow', sh);
+      if (sh) push(label, 'shadow', sh.map(x => ({...x, j:x.j||e.j, r:x.r||e.r})));
       /* 이 표현에서 파생된 바꿔 말하기만 붙인다 */
       for (let k = swapLeft.length - 1; k >= 0; k--){
         if (swapLeft[k].from === e.j){ push(label, 'swap', swapLeft[k]); swapLeft.splice(k,1); }
