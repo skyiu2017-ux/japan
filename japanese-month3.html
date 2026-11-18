@@ -516,7 +516,7 @@ const JP_READINGS = new Map();
   if (!node || typeof node !== 'object') return;
   const pairs = [['j','r'],['exJ','exR'],['frame','frameR'],['from','fromR'],
     ['to','toR'],['qj','qr'],['pj','pr'],['altJ','altR'],['aj','ar'],
-    ['ans','ansR'],['swapJ','swapR'],['mine','mineR'],['reply','replyR']];
+    ['ans','ansR'],['swapJ','swapR'],['mine','mineR'],['reply','replyR'],['ext','extR']];
   for (const [j,r] of pairs){
     if (typeof node[j] === 'string' && node[r] && cat(node[r])?.[0])
       JP_READINGS.set(node[j], cat(node[r])[0]);
