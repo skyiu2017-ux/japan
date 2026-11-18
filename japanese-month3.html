@@ -510,7 +510,25 @@ function speak(text, lang, rate){
     try{ speechSynthesis.speak(u); }catch(e){ fin(); }
   });
 }
-const ja = (t,r)=>speak(fill(t),'ja-JP',r||1);
+/* 표시용 히라가나를 음성 재생에도 사용: 한자 다독음 오독 방지 */
+const JP_READINGS = new Map();
+(function indexJapaneseReadings(node){
+  if (!node || typeof node !== 'object') return;
+  const pairs = [['j','r'],['exJ','exR'],['frame','frameR'],['from','fromR'],
+    ['to','toR'],['qj','qr'],['pj','pr'],['altJ','altR'],['aj','ar'],
+    ['ans','ansR'],['swapJ','swapR'],['mine','mineR'],['reply','replyR']];
+  for (const [j,r] of pairs){
+    if (typeof node[j] === 'string' && node[r] && cat(node[r])?.[0])
+      JP_READINGS.set(node[j], cat(node[r])[0]);
+  }
+  if (Array.isArray(node)) node.forEach(indexJapaneseReadings);
+  else Object.values(node).forEach(v=>{ if(v && typeof v==='object') indexJapaneseReadings(v); });
+})(DATA.days);
+const ja = (t,rate,readingKey)=>{
+  const shown = String(t==null?'':t);
+  const kana = (readingKey && cat(readingKey)?.[0]) || JP_READINGS.get(shown);
+  return speak(fill(kana || shown),'ja-JP',rate||1);
+};
 const ko = t=>speak(fk(t),'ko-KR',1);
 const en = t=>speak(fe(t),'en-US',0.95);
 function warmup(){ /* iOS: 첫 사용자 제스처에서 음성 잠금 해제 */
@@ -1121,7 +1139,7 @@ function bindStep(s){
         });
       }
       showReveal(v);
-      if (s.kind==='listen' || s.kind==='contrast') ja(s.data.j||s.data.ans, 1);
+      if (s.kind==='listen' || s.kind==='contrast') ja(s.data.j||s.data.ans, 1, s.data.j?s.data.r:s.data.ansR);
     };
   });
 
@@ -1132,7 +1150,7 @@ function bindStep(s){
       warmup();
       v.querySelectorAll('[data-rate]').forEach(x=>x.classList.remove('on'));
       b.classList.add('on');
-      await ja(s.data.j, RATES[+b.dataset.rate]);
+      await ja(s.data.j, RATES[+b.dataset.rate], s.data.r);
       b.classList.remove('on');
     };
   });
@@ -1169,7 +1187,7 @@ async function run(s){
         if (!alive()) return;
         els[i] && els[i].classList.add('playing');
         els[i] && els[i].scrollIntoView({block:'center', behavior:'smooth'});
-        await ja(d[i].j, 1);
+        await ja(d[i].j, 1, d[i].r);
         await sleep(340);
         els[i] && els[i].classList.remove('playing');
       }
@@ -1192,7 +1210,7 @@ async function run(s){
         if (!t.cue){
           /* 상대 대사 — 자막 없이 듣기 */
           if (stage) stage.innerHTML = `<div class="rpnow">${esc(t.role||'상대')}의 말을 듣습니다</div>`;
-          await ja(t.j, 1);
+          await ja(t.j, 1, t.r);
           if (!alive()) return;
           if (el){ el.hidden = false; el.scrollIntoView({block:'center', behavior:'smooth'}); }
           await sleep(420);
@@ -1203,15 +1221,15 @@ async function run(s){
         step++;
         if (t.j){                       /* 상대가 먼저 말을 건 경우 */
           if (stage) stage.innerHTML = `<div class="rpnow">${esc(t.role||'상대')}의 말을 듣습니다</div>`;
-          await ja(t.j, 1);
+          await ja(t.j, 1, t.r);
           if (!alive()) return;
         }
         if (stage) stage.innerHTML = `<div class="rpnow">${esc(fk(t.cue))}</div>`;
         await speakWindow(t.pause||6000, fk(t.cue), `내 차례 ${step}/${total}`);
         if (!alive()) return;
         if (el){ el.hidden = false; el.scrollIntoView({block:'center', behavior:'smooth'}); }
-        if (t.ok && t.ok[0]) await ja(t.ok[0].j, RATES[1]);
-        else if (t.j) await ja(t.j, RATES[1]);
+        if (t.ok && t.ok[0]) await ja(t.ok[0].j, RATES[1], t.ok[0].r);
+        else if (t.j) await ja(t.j, RATES[1], t.r);
         if (!alive()) return;
         await sleep(300);
       }
@@ -1224,79 +1242,79 @@ async function run(s){
       await speakWindow(d.pause||7000, fk(d.koPair||d.ko||''), '두 문장 이어서');
       if (!alive()) return;
       showReveal(v, 1);
-      await ja(d.j, RATES[1]);
+      await ja(d.j, RATES[1], d.r);
     }
 
     else if (s.kind==='expr'){
-      await ja(d.j, RATES[1]);
+      await ja(d.j, RATES[1], d.r);
     }
 
     else if (s.kind==='shadow'){
       for (let i=0;i<3;i++){
         if (!alive()) return;
-        await ja(d[0].j, RATES[i]);
+        await ja(d[0].j, RATES[i], d[0].r);
         if (!alive()) return;
         await speakWindow(i===2?2600:3000, fill(d[0].j), `따라 말하기 ${i+1}/3`);
       }
     }
 
     else if (s.kind==='swap'){
-      await ja(d.from, RATES[1]);
+      await ja(d.from, RATES[1], d.fromR);
       if (!alive()) return;
       if (d.ko) await ko(d.ko);
       if (!alive()) return;
       await speakWindow(d.pause||4000, fk(d.ko||''), '바꿔 말하기');
       if (!alive()) return;
       showReveal(v);
-      await ja(d.to, RATES[1]);
+      await ja(d.to, RATES[1], d.toR);
     }
 
     else if (s.kind==='respond'){
-      if (d.pj) await ja(d.pj, 1); else if (d.ko) await ko(d.ko);
+      if (d.pj) await ja(d.pj, 1, d.pr); else if (d.ko) await ko(d.ko);
       if (!alive()) return;
       await speakWindow(d.pause||4000, fk(d.ko||'')||fill(d.pj||''), '대답하세요');
       if (!alive()) return;
       showReveal(v, 1);
-      if (d.ok && d.ok[0]) await ja(d.ok[0].j, RATES[1]);
+      if (d.ok && d.ok[0]) await ja(d.ok[0].j, RATES[1], d.ok[0].r);
       const alt = (d.ok2 && d.ok2[0]) || (d.ok && d.ok[1]);
       if (d.pause2 && alt){
         if (!alive()) return;
         await speakWindow(d.pause2, fk(d.ko2||'같은 뜻을 다른 표현으로'), '한 번 더');
         if (!alive()) return;
         showReveal(v, 2);
-        await ja(alt.j, RATES[1]);
+        await ja(alt.j, RATES[1], alt.r);
       }
     }
 
     else if (s.kind==='contrast'){
       for (const o of (d.opts||[])){
         if (!alive()) return;
-        await ja(o.j, 1); await sleep(500);
+        await ja(o.j, 1, o.r); await sleep(500);
       }
     }
 
     else if (s.kind==='free'){
-      if (d.qj) await ja(d.qj, 1);
+      if (d.qj) await ja(d.qj, 1, d.qr);
       if (!alive()) return;
       await speakWindow(d.pause||6000, fk(d.qko||''), '자유롭게');
       if (!alive()) return;
       showReveal(v, 1);
-      if (d.frame) await ja(d.frame, RATES[1]);
+      if (d.frame) await ja(d.frame, RATES[1], d.frameR);
     }
 
     else if (s.kind==='review' && d.mode==='listeningRecall'){
-      await ja(d.aj, 1);
+      await ja(d.aj, 1, d.ar);
       if (!alive()) return;
       await speakWindow(d.pause||5000, '무슨 뜻인가요?', '뜻을 말하세요');
       if (!alive()) return;
       showReveal(v, 1);
-      await ja(d.aj, RATES[1]);
+      await ja(d.aj, RATES[1], d.ar);
       if (d.mine){
         if (!alive()) return;
         await speakWindow(d.pause||5000, fk(d.mineKo||'이제 내가 할 말은?'), '내가 할 말');
         if (!alive()) return;
         showReveal(v, 2);
-        await ja(d.mine, RATES[1]);
+        await ja(d.mine, RATES[1], d.mineR);
       }
     }
 
@@ -1308,7 +1326,7 @@ async function run(s){
       if (!alive()) return;
       showReveal(v);
       const first = (d.ok && d.ok[0]) || (d.j ? {j:d.j} : null);
-      if (first) await ja(first.j, RATES[1]);
+      if (first) await ja(first.j, RATES[1], first.r);
     }
 
     else if (s.kind==='apply'){
@@ -1317,7 +1335,7 @@ async function run(s){
       await speakWindow(d.pause||5000, fk(d.ko||''), '말하세요');
       if (!alive()) return;
       showReveal(v, 1);
-      await ja(d.j, RATES[1]);
+      await ja(d.j, RATES[1], d.r);
       if (d.swapJ){
         if (!alive()) return;
         if (d.swapKo) await ko(d.swapKo);
@@ -1325,7 +1343,7 @@ async function run(s){
         await speakWindow(d.pause2||5000, fk(d.swapKo||''), '바꿔서');
         if (!alive()) return;
         showReveal(v, 2);
-        await ja(d.swapJ, RATES[1]);
+        await ja(d.swapJ, RATES[1], d.swapR);
       }
       if (flags.en && d.en){
         if (!alive()) return;
@@ -1336,23 +1354,23 @@ async function run(s){
     }
 
     else if (s.kind==='listen' && d.kind==='replyProduction'){
-      await ja(d.j, d.rate||1);
+      await ja(d.j, d.rate||1, d.r);
       if (!alive()) return;
       await speakWindow(d.pause||5000, fk(d.q||'듣고 이어서 대답하세요.'), '대답하세요');
       if (!alive()) return;
       showReveal(v);
-      if (d.reply) await ja(d.reply, RATES[1]);
+      if (d.reply) await ja(d.reply, RATES[1], d.replyR);
     }
 
     else if (s.kind==='listen' && d.opts){
       for (const o of d.opts){
         if (!alive()) return;
-        await ja(o.j, d.rate||1); await sleep(520);
+        await ja(o.j, d.rate||1, o.r); await sleep(520);
       }
     }
 
     else if (s.kind==='listen'){
-      await ja(d.j, d.rate||1);
+      await ja(d.j, d.rate||1, d.r);
     }
 
     else if (s.kind==='kotoja'){
@@ -1367,12 +1385,12 @@ async function run(s){
         if(!alive())return;
         const answer=card?.querySelector('[data-ans]');if(answer)answer.hidden=false;
         const btn=card?.querySelector('[data-show-answer]');if(btn)btn.textContent='정답 가리기';
-        if(x.ok?.[0])await ja(x.ok[0].j,RATES[1]);
+        if(x.ok?.[0])await ja(x.ok[0].j,RATES[1],x.ok[0].r);
         if(!alive())return;
         if(x.ok2?.[0]&&x.ko2){
           await speakWindow(x.pause2||4000,fk(x.ko2),'바꿔 말하기');
           if(!alive())return;
-          await ja(x.ok2[0].j,RATES[1]);
+          await ja(x.ok2[0].j,RATES[1],x.ok2[0].r);
         }
         if(card)card.classList.remove('playing');
       }
@@ -1384,7 +1402,7 @@ async function run(s){
       await speakWindow(d.pause||4000, fk(d.ko||''), '자막 없이');
       if (!alive()) return;
       showReveal(v, 1);
-      await ja(d.j, RATES[1]);
+      await ja(d.j, RATES[1], d.r);
       if (d.altJ){
         if (!alive()) return;
         if (d.altKo) await ko(d.altKo);
@@ -1392,7 +1410,7 @@ async function run(s){
         await speakWindow(d.altPause||4000, fk(d.altKo||'다른 표현으로'), '다른 표현으로');
         if (!alive()) return;
         showReveal(v, 2);
-        await ja(d.altJ, RATES[1]);
+        await ja(d.altJ, RATES[1], d.altR);
       }
       if (flags.en && d.en){
         if (!alive()) return;
